@@ -1,0 +1,24 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill" style="width:100%;">
+    <mat-label>User</mat-label>
+    <input matInput id="username" type="number" formControlName="username" />
+    <mat-error *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+      Username is required.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="width:100%;">
+    <mat-label>Role</mat-label>
+    <mat-select id="role" formControlName="role">
+      <mat-option value="">Select a role</mat-option>
+      <mat-option value="admin">Admin</mat-option>
+      <mat-option value="user">User</mat-option>
+      <mat-option value="guest">Guest</mat-option>
+    </mat-select>
+    <mat-error *ngIf="loginForm.get('role')?.invalid && loginForm.get('role')?.touched">
+      Role is required.
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]=loginForm.invalid>Login</button>
+</form>
