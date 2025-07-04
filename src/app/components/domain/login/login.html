@@ -1,9 +1,19 @@
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <mat-form-field appearance="fill" style="width:100%;">
     <mat-label>User</mat-label>
-    <input matInput id="username" type="number" formControlName="username" />
+    <input
+      matInput
+      id="username"
+      type="text"
+      formControlName="username"
+      maxlength="10"
+      pattern="^\d{1,10}$"
+      autocomplete="off"
+      inputmode="numeric"
+      placeholder="Enter up to 10 digits"
+    />
     <mat-error *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
-      Username is required.
+      Username is required and must be up to 10 digits.
     </mat-error>
   </mat-form-field>
 
@@ -19,5 +29,4 @@
       Role is required.
     </mat-error>
   </mat-form-field>
-
 </form>

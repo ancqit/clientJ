@@ -6,4 +6,5 @@ export const routes: Routes = [
 //   { path: '', component: Login },
   { path: '', component: Dashboard },
   { path: 'dashboard', component: Dashboard },
+  { path: 'logout', component: Login },
 ];

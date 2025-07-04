@@ -15,10 +15,12 @@ import { Router } from '@angular/router';
 })
 export class Login {
   loginForm: FormGroup;
+  readonly MAX_USERNAME = 10000000000;
+  
 
   constructor(private fb: FormBuilder,private router: Router) {
     this.loginForm = this.fb.group({
-      username: [, Validators.required],
+      username: [,[ Validators.required,Validators.max(this.MAX_USERNAME)]],
       role: ['', Validators.required]
     });
     this.loginForm.valueChanges.subscribe(value => {
