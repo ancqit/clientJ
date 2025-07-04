@@ -5,6 +5,7 @@ import { MatOption } from '@angular/material/autocomplete';
 import { MatError, MatFormField, MatFormFieldControl, MatLabel } from '@angular/material/form-field';
 import { MatInput, MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,19 +16,19 @@ import { MatSelectModule } from '@angular/material/select';
 export class Login {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private router: Router) {
     this.loginForm = this.fb.group({
       username: [, Validators.required],
       role: ['', Validators.required]
     });
     this.loginForm.valueChanges.subscribe(value => {
-      if(value.username.toString().length>10)this.onSubmit() });
+      if((value.username.toString().length <= 10)|| (value.role!==''))this.onSubmit() });
     }
 
   onSubmit() {
     if (this.loginForm.valid) {
       // Handle successful form submission
-      alert(JSON.stringify(this.loginForm.value));
-    }
+      // alert(JSON.stringify(this.loginForm.value));
+      this.router.navigate(['/dashboard']);    }
   }
 }
